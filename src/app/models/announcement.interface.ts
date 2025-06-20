@@ -5,4 +5,6 @@ export interface Announcement {
   price: number;
   image: string;
   created_at: string;
+  location: string;
+  address: string;
 }

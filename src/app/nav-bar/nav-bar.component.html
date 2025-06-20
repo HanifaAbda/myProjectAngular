@@ -1,13 +1,36 @@
 <nav class="bg-blue-500 shadow-lg">
-  <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
-    <div class="">
-      <!-- Logo avec votre image -->
-      <div class="">
-        <div class="flex items-start">
-          <!-- Remplacez "nom-de-votre-image.png" par le vrai nom de votre fichier -->
-          <img src="https://media.istockphoto.com/id/1040299496/fr/vectoriel/maisons-et-camembert.jpg?s=612x612&w=0&k=20&c=VxORkTSzC0i8UjUQgSJtgMlG_HXwOjDW4qDrDd4Ebjc=" 
-          alt="Logo" class="h-15 w-10 object-contain">
-          <span class="ml-2 text-xl font-bold text-red-600">MonApp</span>
-        </div>
-      </div>
-      
+  <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+    
+    <!-- Logo + Titre -->
+    <div class="flex items-center">
+      <a routerLink="/home">
+        <img 
+          src="https://media.istockphoto.com/id/1040299496/fr/vectoriel/maisons-et-camembert.jpg?s=612x612&w=0&k=20&c=VxORkTSzC0i8UjUQgSJtgMlG_HXwOjDW4qDrDd4Ebjc=" 
+          alt="Logo" 
+          class="h-12 w-auto object-contain"
+        >
+      </a>
+      <a routerLink="/home" class="ml-3 text-2xl font-bold text-red-600 select-none">MonApp</a>
+    </div>
+
+    <!-- Menu -->
+    <div class="flex gap-6 items-center text-white font-medium">
+      <a routerLink="/">Accueil</a>
+      <a routerLink="/about">À propos</a>
+      <a routerLink="/contact">Contact</a>
+
+      <!-- Boutons -->
+      <button 
+        routerLink="/login" 
+        class="bg-white text-blue-600 px-6 py-2 rounded-full hover:bg-gray-200 transition">
+        Connexion
+      </button>
+      <button 
+        routerLink="/register" 
+        class="text-white px-6 py-2 rounded-full border border-white hover:bg-blue-800 transition">
+        Inscription
+      </button>
+    </div>
+
+  </div>
+</nav>
