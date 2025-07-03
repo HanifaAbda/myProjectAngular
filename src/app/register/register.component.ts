@@ -21,7 +21,7 @@ export class RegisterComponent {
         return
       }
       if (this.name && this.email && this.password) {
-        console.log('Inscription avec:', this.name, this.email, this.password);
+        console.log('Inscription avec:', this.name, this.email);
         alert(`Inscrition réussie pour ${this.name}`);
       }
     }

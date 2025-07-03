@@ -3,7 +3,7 @@ import { HomeComponent } from './home/home.component';
 import { DetailComponent } from './detail/detail.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: 'app-home', component: HomeComponent },
   { path: 'detail/:id', component: DetailComponent },
   {
     path: 'login',

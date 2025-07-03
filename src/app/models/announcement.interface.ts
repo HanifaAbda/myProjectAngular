@@ -3,7 +3,7 @@ export interface Announcement {
   title: string;
   description: string;
   price: number;
-  image: string;
+  imageCover: string;
   created_at: string;
   location: string;
   address: string;
