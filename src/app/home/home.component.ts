@@ -40,7 +40,7 @@ maxPrice: number = 1000000;
 
        this.filteredAnnouncements = [...this.announcements];
 
-      console.log('Annonces locales :', this.announcements); // ← ajoute ça
+      console.log('Annonces locales :', this.announcements); 
 
       // Chargement des données de l'api
       this.announcementService.getAnnouncements().subscribe({
