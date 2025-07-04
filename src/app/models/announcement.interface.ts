@@ -2,9 +2,9 @@ export interface Announcement {
   id: number;
   title: string;
   description: string;
-  price: number;
+  dailyPrice: number;
   imageCover: string;
   created_at: string;
-  location: string;
+  city: string;
   address: string;
 }

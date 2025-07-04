@@ -1,1 +1,23 @@
-<p>detail works!</p>
+<section class="max-w-4xl mx-auto p-6 rounded-lg shadow-md">
+  <h1 class="text-3xl font-bold mb-4">{{ announcement?.title }}</h1>
+
+  <img
+    [src]="announcement?.imageCover"
+    [alt]="announcement?.title"
+    class="w-full h-64 object-cover rounded-md mb-6"
+  />
+
+  <p class="mb-4">{{ announcement?.description }}</p>
+
+  <div class="mb-4">
+    <strong>Adresse :</strong> {{ announcement?.address }}, {{ announcement?.city }} 
+  </div>
+
+
+  <div class="mb-4">
+    <strong>Prix journalier :</strong> {{ announcement?.dailyPrice | currency:'EUR':'symbol':'1.2-2':'fr' }}
+  </div>
+
+</section>
+
+

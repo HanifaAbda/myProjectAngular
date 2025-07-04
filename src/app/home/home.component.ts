@@ -5,14 +5,15 @@ import { RouterModule } from '@angular/router';
 import localeFr from '@angular/common/locales/fr'; 
 
 import { Announcement } from '../models/announcement.interface';
-import { ApiService } from '../services/api.service';
+import { AnnouncementService } from '../services/announcement.service';
+
 
 registerLocaleData(localeFr); 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -29,20 +30,25 @@ minPrice: number = 0;
 maxPrice: number = 1000000;
 
 
-  constructor (private apiService: ApiService) {}
+  constructor (private  announcementService: AnnouncementService) {}
 
     ngOnInit(): void {
       
       // Chargement des annonces du tableau en brut
-      const localData = this.apiService.getLocalAnnouncements();
+      const localData = this.announcementService.getLocalAnnouncements();
       this.announcements = [...localData];
 
+       this.filteredAnnouncements = [...this.announcements];
+
+      console.log('Annonces locales :', this.announcements); // ← ajoute ça
+
       // Chargement des données de l'api
-      this.apiService.getAnnouncements().subscribe({
+      this.announcementService.getAnnouncements().subscribe({
         next: (data) => {
           console.log('Données reçues de l API :', data);
           this.announcements = [...this.announcements, ...data]; // fusion du tableau brut et données api
           this.filteredAnnouncements = [...this.announcements]; //filtres 
+          
         },
         error: (err) => {
           console.error('Erreur lors de la récupération des annonces API', err);
@@ -51,16 +57,17 @@ maxPrice: number = 1000000;
     }
 
 
-  applyFilters(): void {
-    this.filteredAnnouncements = this.announcements.filter(announcement => {
-      const matchesLocation = announcement.location.toLowerCase().includes(this.locationFilter.toLowerCase());
-      const matchesPrice = announcement.price >= this.minPrice && announcement.price <= this.maxPrice;
-      return matchesLocation && matchesPrice;
+applyFilters(): void {
+  this.filteredAnnouncements = this.announcements.filter(announcement => {
+    const matchesCity = this.selectedCity ? announcement.city.toLowerCase() === this.selectedCity.toLowerCase() : true;
+    const matchesLocation = announcement.city?.toLowerCase().includes(this.locationFilter.toLowerCase());
+    const matchesPrice = announcement.dailyPrice >= this.minPrice && announcement.dailyPrice <= this.maxPrice;
+    return matchesCity && matchesLocation && matchesPrice;
     });
   }
 
   voirPlus(announcement: Announcement): void {
-  alert(`Titre : ${announcement.title}\nAdresse : ${announcement.address}\nLieu : ${announcement.location}`);
+  alert(`Titre : ${announcement.title}\nAdresse : ${announcement.address}\nLieu : ${announcement.city}`);
   }
   
 }

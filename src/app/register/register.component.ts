@@ -1,28 +1,48 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { UserService } from '../services/user.service';  
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [FormsModule, RouterModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-    name = '';
-    email = '';
-    password = '';
-    confirmPassword = '';
+  name = '';
+  email = '';
+  password = '';
+  confirmPassword = '';
+
   
-    onSubmit() {
-      if(this.password !== this.confirmPassword) {
-        alert('Les mots de passe ne correspondent pas');
-        return
-      }
-      if (this.name && this.email && this.password) {
-        console.log('Inscription avec:', this.name, this.email);
-        alert(`Inscrition réussie pour ${this.name}`);
-      }
+
+  constructor(private userService: UserService) {}
+
+  onSubmit() {
+    if (this.password !== this.confirmPassword) {
+      alert('Les mots de passe ne correspondent pas');
+      return;
     }
+    if (this.email && this.password) {
+      this.userService.register({
+        name: this.name,
+        email: this.email,
+        password: this.password
+      }).subscribe({
+        next: (response) => {
+          alert(`Inscription réussie pour ${this.name}`);
+          this.email = '';
+          this.password = '';
+          this.confirmPassword = '';
+        },
+        error: (error) => {
+          alert(`Erreur lors de l'inscription : ${error.error?.message || error.message}`);
+        }
+      });
+    } else {
+      alert('Merci de remplir tous les champs');
+    }
+  }
 }

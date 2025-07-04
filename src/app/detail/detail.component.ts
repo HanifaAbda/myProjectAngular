@@ -1,18 +1,42 @@
-import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Announcement } from '../models/announcement.interface';
+import { AnnouncementService } from '../services/announcement.service';
+
 
 @Component({
   selector: 'app-detail',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.css']  
+  styleUrls: ['./detail.component.css']
 })
-export class DetailComponent {
-  private route = inject(ActivatedRoute);
-  announcementId: number | null = null;
+export class DetailComponent implements OnInit {
+  private route: ActivatedRoute = inject(ActivatedRoute);
+  private router: Router = inject(Router);
+  private announcementService: AnnouncementService = inject(AnnouncementService);
 
-  constructor() {
-    this.announcementId = Number(this.route.snapshot.paramMap.get('id'));  // corrige 'apraMap' en 'paramMap'
+  announcement: Announcement | null = null;
+
+ngOnInit() {
+  const id: string | null = this.route.snapshot.paramMap.get('id');
+
+  if (id && !isNaN(parseInt(id))) {
+    this.announcementService.getAnnouncementById(parseInt(id)).subscribe({
+      next: (data: Announcement) => {
+        this.announcement = data;
+        console.log(this.announcement);
+      },
+      error: (err) => {
+        console.error('Erreur lors du chargement de l\'annonce', err);
+        this.router.navigate(['/not-found']); 
+      }
+    });
+    } else {
+    // erreur id redirection vers home
+    this.router.navigate(['/']);
+    }
   }
 }
+
