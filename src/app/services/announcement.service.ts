@@ -16,7 +16,7 @@ export class AnnouncementService {
       title: "Appartement à louer",
       description: "Appartement moderne en centre-ville.",
       dailyPrice: 850,
-      imageCover: "https://images.unsplash.com/photo-1560448070-47c0c61dd1d3?auto=format&fit=crop&w=300&q=80",
+      imageCover: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=600&q=60",
       created_at: "2024-12-01T10:00:00Z",
       city: "Paris",
       address: "12 Rue de Rivoli"
@@ -26,7 +26,7 @@ export class AnnouncementService {
       title: "Maison avec jardin",
       description: "Maison de campagne avec un grand jardin.",
       dailyPrice: 210000,
-      imageCover: "https://images.unsplash.com/photo-1572120360610-d971b9b9be5a?auto=format&fit=crop&w=300&q=80",
+      imageCover: "https://images.unsplash.com/photo-1598714805247-5dd440d87124?auto=format&fit=crop&w=435&q=80",
       created_at: "2025-01-15T15:30:00Z",
       city: "Lyon",
       address: "45 Avenue des Frères Lumière"
@@ -66,7 +66,7 @@ export class AnnouncementService {
       title: "Appartement neuf",
       description: "Appartement neuf avec balcon.",
       dailyPrice: 1300,
-      imageCover: "https://images.unsplash.com/photo-1530541930197-1b2bf4744e0d?auto=format&fit=crop&w=300&q=80",
+      imageCover: "https://images.unsplash.com/photo-1577579242349-820c63f5b9c1?auto=format&fit=crop&w=459&q=80",
       created_at: "2024-10-05T16:30:00Z",
       city: "Montpellier",
       address: "14 Rue de la Loge"
@@ -76,7 +76,7 @@ export class AnnouncementService {
       title: "Maison ancienne",
       description: "Charmante maison ancienne rénovée.",
       dailyPrice: 300000,
-      imageCover: "https://images.unsplash.com/photo-1501183638714-0f3f3b1b8f8b?auto=format&fit=crop&w=300&q=80",
+      imageCover: "https://plus.unsplash.com/premium_photo-1661919644085-cf9cfb5924f9?auto=format&fit=crop&w=774&q=80",
       created_at: "2024-09-15T09:00:00Z",
       city: "Bordeaux",
       address: "56 Cours de l’Intendance"
@@ -86,7 +86,7 @@ export class AnnouncementService {
       title: "Appartement avec terrasse",
       description: "Terrasse spacieuse et vue dégagée.",
       dailyPrice: 1400,
-      imageCover: "https://images.unsplash.com/photo-1505692794403-204d6d0a9433?auto=format&fit=crop&w=300&q=80",
+      imageCover: "https://images.unsplash.com/photo-1560448205-d82bf18b9bcf?auto=format&fit=crop&w=870&q=80",
       created_at: "2024-12-11T12:00:00Z",
       city: "Lille",
       address: "18 Place du Général de Gaulle"
@@ -96,7 +96,7 @@ export class AnnouncementService {
       title: "Studio cosy",
       description: "Petit studio parfait pour étudiant.",
       dailyPrice: 450,
-      imageCover: "https://images.unsplash.com/photo-1472220625704-91e1462799b2?auto=format&fit=crop&w=300&q=80",
+      imageCover: "https://images.unsplash.com/photo-1683651057021-df4922079005?auto=format&fit=crop&w=600&q=60",
       created_at: "2025-01-01T08:00:00Z",
       city: "Rennes",
       address: "9 Rue Saint-Michel"
@@ -106,7 +106,7 @@ export class AnnouncementService {
       title: "Maison familiale",
       description: "Maison idéale pour famille nombreuse.",
       dailyPrice: 350000,
-      imageCover: "https://images.unsplash.com/photo-1494522358652-4f56c1a2e727?auto=format&fit=crop&w=300&q=80",
+      imageCover: "https://images.unsplash.com/photo-1532512888905-09061950c8c6?auto=format&fit=crop&w=870&q=80",
       created_at: "2025-03-15T10:30:00Z",
       city: "Strasbourg",
       address: "24 Rue de Juin"
@@ -216,7 +216,7 @@ export class AnnouncementService {
       title: "Appartement spacieux",
       description: "Grand séjour et cuisine équipée.",
       dailyPrice: 1450,
-      imageCover: "https://images.unsplash.com/photo-1505692794403-204d6d0a9433?auto=format&fit=crop&w=300&q=80",
+      imageCover: "https://plus.unsplash.com/premium_photo-1661963579906-f146cde83bf4?auto=format&fit=crop&w=600&q=60",
       created_at: "2025-01-12T13:00:00Z",
       city: "Toulouse, Occitanie",
       address: "23 boulevard des Minimes, 31200 Toulouse"
@@ -226,7 +226,7 @@ export class AnnouncementService {
       title: "Studio lumineux",
       description: "Beaux volumes et calme assuré.",
       dailyPrice: 600,
-      imageCover: "https://images.unsplash.com/photo-1560448070-47c0c61dd1d3?auto=format&fit=crop&w=300&q=80",
+      imageCover: "https://images.unsplash.com/photo-1585128792103-0b591f96512e?auto=format&fit=crop&w=600&q=60",
       created_at: "2024-12-18T09:00:00Z",
       city: "Nantes, Pays de la Loire",
       address: "10 rue Crébillon, 44000 Nantes"
@@ -236,7 +236,7 @@ export class AnnouncementService {
       title: "Maison de ville",
       description: "Quartier calme, proche écoles.",
       dailyPrice: 420000,
-      imageCover: "https://images.unsplash.com/photo-1494522358652-4f56c1a2e727?auto=format&fit=crop&w=300&q=80",
+      imageCover: "https://images.unsplash.com/photo-1430285561322-7808604715df?auto=format&fit=crop&w=870&q=80",
       created_at: "2025-02-20T10:30:00Z",
       city: "Strasbourg, Grand Est",
       address: "7 rue des Orphelins, 67000 Strasbourg"
@@ -256,7 +256,7 @@ export class AnnouncementService {
       title: "Villa contemporaine",
       description: "Beaux volumes, piscine chauffée.",
       dailyPrice: 900000,
-      imageCover: "https://images.unsplash.com/photo-1501183638714-0f3f3b1b8f8b?auto=format&fit=crop&w=300&q=80",
+      imageCover: "https://images.unsplash.com/photo-1673469110171-dbf5d19a8336?auto=format&fit=crop&w=580&q=80",
       created_at: "2025-01-25T11:15:00Z",
       city: "Cannes, Provence-Alpes-Côte d'Azur",
       address: "33 boulevard de la Croisette, 06400 Cannes"
@@ -306,7 +306,7 @@ export class AnnouncementService {
       title: "Maison avec terrasse",
       description: "Grande terrasse et jardin arboré.",
       dailyPrice: 400000,
-      imageCover: "https://images.unsplash.com/photo-1501183638714-0f3f3b1b8f8b?auto=format&fit=crop&w=300&q=80",
+      imageCover: "https://images.unsplash.com/photo-1738514631958-1a6758eb73a2?auto=format&fit=crop&w=435&q=80",
       created_at: "2025-01-05T09:30:00Z",
       city: "Rouen, Normandie",
       address: "4 rue du Gros-Horloge, 76000 Rouen"
@@ -326,7 +326,7 @@ export class AnnouncementService {
   }
   
   getAnnouncementById(id:number): Observable<any> {
-    return this.http.get<Announcement>('https://atelier-de-toril.fr/api/announcements/${id}')
+    return this.http.get<Announcement>(`https://atelier-de-toril.fr/api/announcements/${id}`);
   }
 
 }

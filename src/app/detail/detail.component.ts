@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Announcement } from '../models/announcement.interface';
 import { AnnouncementService } from '../services/announcement.service';
-
 
 @Component({
   selector: 'app-detail',
@@ -13,30 +12,30 @@ import { AnnouncementService } from '../services/announcement.service';
   styleUrls: ['./detail.component.css']
 })
 export class DetailComponent implements OnInit {
-  private route: ActivatedRoute = inject(ActivatedRoute);
-  private router: Router = inject(Router);
-  private announcementService: AnnouncementService = inject(AnnouncementService);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private announcementService = inject(AnnouncementService);
 
   announcement: Announcement | null = null;
 
-ngOnInit() {
-  const id: string | null = this.route.snapshot.paramMap.get('id');
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    console.log('ID reçu dans le composant détail :', id);
 
-  if (id && !isNaN(parseInt(id))) {
-    this.announcementService.getAnnouncementById(parseInt(id)).subscribe({
-      next: (data: Announcement) => {
-        this.announcement = data;
-        console.log(this.announcement);
-      },
-      error: (err) => {
-        console.error('Erreur lors du chargement de l\'annonce', err);
-        this.router.navigate(['/not-found']); 
-      }
-    });
+    if (id && !isNaN(parseInt(id))) {
+      this.announcementService.getAnnouncementById(parseInt(id)).subscribe({
+        next: (data: Announcement) => {
+          this.announcement = data;
+          console.log('Annonce reçue :', this.announcement);
+        },
+        error: (err) => {
+          console.error('Erreur lors du chargement de l\'annonce', err);
+          this.router.navigate(['/not-found']);
+        }
+      });
     } else {
-    // erreur id redirection vers home
-    this.router.navigate(['/']);
+      // id invalide → redirection vers l'accueil
+      this.router.navigate(['/']);
     }
   }
 }
-

@@ -48,6 +48,7 @@ maxPrice: number = 1000000;
           console.log('Données reçues de l API :', data);
           this.announcements = [...this.announcements, ...data]; // fusion du tableau brut et données api
           this.filteredAnnouncements = [...this.announcements]; //filtres 
+          console.log('Toutes les annonces finales :', this.announcements);
           
         },
         error: (err) => {
@@ -67,6 +68,7 @@ applyFilters(): void {
   }
 
   voirPlus(announcement: Announcement): void {
+    console.log('Annonce cliquée :', announcement);
   alert(`Titre : ${announcement.title}\nAdresse : ${announcement.address}\nLieu : ${announcement.city}`);
   }
   
