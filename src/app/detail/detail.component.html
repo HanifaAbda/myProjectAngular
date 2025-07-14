@@ -1,23 +1,41 @@
-<section class="max-w-4xl mx-auto p-6 rounded-lg shadow-md">
-  <h1 class="text-3xl font-bold mb-4">{{ announcement?.title }}</h1>
+<div *ngIf="announcement" class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-xl mt-8">
+  <h1 class="text-4xl font-extrabold text-gray-900 text-center mb-6">{{ announcement.title }}</h1>
 
-  <img
-    [src]="announcement?.imageCover"
-    [alt]="announcement?.title"
-    class="w-full h-64 object-cover rounded-md mb-6"
-  />
-
-  <p class="mb-4">{{ announcement?.description }}</p>
-
-  <div class="mb-4">
-    <strong>Adresse :</strong> {{ announcement?.address }}, {{ announcement?.city }} 
+  <div class="mb-6">
+    <img [src]="announcement.imageCover" alt="Image de {{ announcement.title }}"
+         class="w-full h-96 object-cover rounded-lg shadow-md" />
   </div>
 
-
-  <div class="mb-4">
-    <strong>Prix journalier :</strong> {{ announcement?.dailyPrice | currency:'EUR':'symbol':'1.2-2':'fr' }}
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <div>
+      <h2 class="text-2xl font-semibold text-gray-800 mb-3">Description</h2>
+      <p class="text-gray-700 leading-relaxed">{{ announcement.description }}</p>
+    </div>
+    <div>
+      <h2 class="text-2xl font-semibold text-gray-800 mb-3">Détails</h2>
+      <p class="text-gray-700 mb-2">
+        <strong class="font-medium">Prix journalier :</strong>
+        <span class="text-blue-700 text-xl font-bold ml-2">{{ announcement.dailyPrice | currency:'EUR':'symbol':'1.0-0' : 'fr' }}</span>
+      </p>
+      <p class="text-gray-700 mb-2">
+        <strong class="font-medium">Adresse :</strong> {{ announcement.address }}, {{ announcement.city }}
+      </p>
+      <p class="text-gray-700 mb-2">
+        <strong class="font-medium">Publié le :</strong> {{ announcement.created_at | date:'longDate':'':'fr' }}
+      </p>
+      </div>
   </div>
 
-</section>
+  <div class="text-center mt-8">
+    <a routerLink="" class="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg hover:bg-gray-300 transition-colors duration-300 inline-block">
+      Retour aux annonces
+    </a>
+  </div>
+</div>
 
-
+<div *ngIf="!announcement" class="max-w-md mx-auto p-6 bg-red-100 border border-red-400 text-red-700 rounded-lg shadow-md mt-8 text-center">
+  <p class="text-lg">Annonce non trouvée.</p>
+  <a routerLink="/" class="mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition inline-block">
+    Retour
+  </a>
+</div>

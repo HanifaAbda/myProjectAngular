@@ -3,11 +3,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Announcement } from '../models/announcement.interface';
 import { map } from 'rxjs/operators';
+import { environment } from '../../environnement/environnement';
 
 @Injectable({ providedIn: 'root' })
 export class AnnouncementService {
 
- private apiUrl = 'https://atelier-de-toril.fr/api/announcement';
+ private apiUrl = `${environment.apiUrl}/announcements`;
 
 
   private announcements: Announcement[] = [
@@ -315,18 +316,20 @@ export class AnnouncementService {
 
   constructor(private http: HttpClient) {}
 
-  getLocalAnnouncements(): Announcement[] {
-    return this.announcements;
+  getAnnouncementsByIdLocal(id: number): Announcement | undefined {
+      const localData = localStorage.getItem('announcements');
+      const announcements: Announcement[] = localData ? JSON.parse(localData) : [];
+    return announcements.find(a => a.id === id);
   }
 
   getAnnouncements(): Observable<Announcement[]> {
-    return this.http.get<any>('https://atelier-de-toril.fr/api/announcements').pipe(
+    return this.http.get<any>(`${this.apiUrl}`).pipe(
     map(response => response.member)
     );
   }
   
   getAnnouncementById(id:number): Observable<any> {
-    return this.http.get<Announcement>(`https://atelier-de-toril.fr/api/announcements/${id}`);
+    return this.http.get<Announcement>(`${this.apiUrl}/${id}`);
   }
 
 }

@@ -32,44 +32,48 @@ maxPrice: number = 1000000;
 
   constructor (private  announcementService: AnnouncementService) {}
 
-    ngOnInit(): void {
-      
-      // Chargement des annonces du tableau en brut
-      const localData = this.announcementService.getLocalAnnouncements();
-      this.announcements = [...localData];
+      ngOnInit(): void {
+    this.loadAnnouncements();
+  }
 
-       this.filteredAnnouncements = [...this.announcements];
-
-      console.log('Annonces locales :', this.announcements); 
-
-      // Chargement des données de l'api
-      this.announcementService.getAnnouncements().subscribe({
-        next: (data) => {
-          console.log('Données reçues de l API :', data);
-          this.announcements = [...this.announcements, ...data]; // fusion du tableau brut et données api
-          this.filteredAnnouncements = [...this.announcements]; //filtres 
-          console.log('Toutes les annonces finales :', this.announcements);
-          
-        },
-        error: (err) => {
-          console.error('Erreur lors de la récupération des annonces API', err);
-        }
-      });      
+  loadAnnouncements(): void {
+    const localData = localStorage.getItem('announcements');
+    if (localData) {
+      this.announcements = JSON.parse(localData);
+      this.filteredAnnouncements = [...this.announcements];
+    } else {
+      this.announcementService.getAnnouncements().subscribe(data => {
+        this.announcements = data;
+        this.filteredAnnouncements = [...this.announcements];
+        localStorage.setItem('announcements', JSON.stringify(data));
+      });
     }
+  }
 
+  applyFilters(): void {
+    this.filteredAnnouncements = this.announcements.filter(announcement => {
+      const matchesCity = this.selectedCity
+        ? announcement.city.toLowerCase() === this.selectedCity.toLowerCase()
+        : true;
+      const matchesLocation = announcement.city?.toLowerCase().includes(this.locationFilter.toLowerCase());
+      const matchesPrice =
+        announcement.dailyPrice >= this.minPrice && announcement.dailyPrice <= this.maxPrice;
 
-applyFilters(): void {
-  this.filteredAnnouncements = this.announcements.filter(announcement => {
-    const matchesCity = this.selectedCity ? announcement.city.toLowerCase() === this.selectedCity.toLowerCase() : true;
-    const matchesLocation = announcement.city?.toLowerCase().includes(this.locationFilter.toLowerCase());
-    const matchesPrice = announcement.dailyPrice >= this.minPrice && announcement.dailyPrice <= this.maxPrice;
-    return matchesCity && matchesLocation && matchesPrice;
+      return matchesCity && matchesLocation && matchesPrice;
     });
   }
 
   voirPlus(announcement: Announcement): void {
-    console.log('Annonce cliquée :', announcement);
-  alert(`Titre : ${announcement.title}\nAdresse : ${announcement.address}\nLieu : ${announcement.city}`);
+    const localAnnouncement = this.announcementService.getAnnouncementsByIdLocal(announcement.id);
+
+    if (localAnnouncement) {
+      console.log('Annonce trouvée en localStorage :', localAnnouncement);
+      alert(
+        `Titre : ${localAnnouncement.title}\nAdresse : ${localAnnouncement.address}\nLieu : ${localAnnouncement.city}`
+      );
+    } else {
+      console.warn('Annonce non trouvée dans le localStorage.');
+    }
   }
   
 }
